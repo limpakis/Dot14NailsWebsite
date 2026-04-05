@@ -282,53 +282,83 @@ export default function Home() {
             <p className="font-serif tracking-[0.3em] uppercase text-xs mb-3" style={{ color: "#8FBB9E" }}>Πού θα μας βρεις</p>
             <h2 className="font-script text-5xl sm:text-6xl" style={{ color: "#4A3728" }}>Επικοινωνία</h2>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Hours */}
-            <div className="border p-8" style={{ backgroundColor: "rgba(255,255,255,0.6)", borderColor: "rgba(143,187,158,0.2)" }}>
-              <h3 className="font-serif text-lg font-semibold tracking-widest uppercase mb-6 flex items-center gap-3" style={{ color: "#4A3728" }}>
-                <span style={{ color: "#8FBB9E" }}>✦</span> Ωράριο
-              </h3>
-              <div className="space-y-3">
-                {hours.map((h) => (
-                  <div key={h.day} className="flex justify-between font-serif font-light" style={{ color: "#7A6055" }}>
-                    <span>{h.day}</span>
-                    <span style={{ color: h.time === "Κλειστά" ? "rgba(212,137,122,0.6)" : "#4A3728" }}>{h.time}</span>
-                  </div>
-                ))}
-              </div>
+
+          {/* Map + info side by side */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+
+            {/* Embedded map */}
+            <div className="overflow-hidden border" style={{ borderColor: "rgba(143,187,158,0.2)", aspectRatio: "4/3" }}>
+              <iframe
+                src="https://maps.google.com/maps?q=Εθνικής+Αντιστάσεως+14,+Άνω+Ιλίσια+15772&output=embed&z=16&hl=el"
+                width="100%"
+                height="100%"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Dot. 14 Nail Salon location"
+              />
             </div>
 
-            {/* Contact */}
-            <div className="border p-8" style={{ backgroundColor: "rgba(255,255,255,0.6)", borderColor: "rgba(212,137,122,0.2)" }}>
-              <h3 className="font-serif text-lg font-semibold tracking-widest uppercase mb-6 flex items-center gap-3" style={{ color: "#4A3728" }}>
-                <span style={{ color: "#D4897A" }}>✦</span> Στοιχεία
-              </h3>
-              <div className="space-y-5 font-serif font-light" style={{ color: "#7A6055" }}>
-                <div>
-                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "#8FBB9E" }}>Διεύθυνση</p>
-                  <p>Εθνικής Αντιστάσεως 14</p>
-                  <p>Άνω Ιλίσια, Τ.Κ. 15772</p>
-                </div>
-                <div>
-                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "#8FBB9E" }}>Τηλέφωνο</p>
-                  <Link href="tel:2107475270" className="transition-opacity hover:opacity-50">210 747 5270</Link>
-                </div>
-                <div>
-                  <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "#8FBB9E" }}>Instagram</p>
-                  <Link href="https://www.instagram.com/dot.14_nailsalon/" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-50">
-                    @dot.14_nailsalon
-                  </Link>
+            {/* Info cards stacked */}
+            <div className="flex flex-col gap-5">
+              {/* Hours */}
+              <div className="border p-6" style={{ backgroundColor: "rgba(255,255,255,0.6)", borderColor: "rgba(143,187,158,0.2)" }}>
+                <h3 className="font-serif text-sm font-semibold tracking-widest uppercase mb-4 flex items-center gap-2" style={{ color: "#4A3728" }}>
+                  <span style={{ color: "#8FBB9E" }}>✦</span> Ωράριο
+                </h3>
+                <div className="space-y-2">
+                  {hours.map((h) => (
+                    <div key={h.day} className="flex justify-between font-serif font-light text-sm" style={{ color: "#7A6055" }}>
+                      <span>{h.day}</span>
+                      <span style={{ color: h.time === "Κλειστά" ? "rgba(212,137,122,0.6)" : "#4A3728" }}>{h.time}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <Link
-                href="https://www.instagram.com/dot.14_nailsalon/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-8 px-6 py-3 text-sm tracking-widest uppercase font-serif w-full text-center transition-opacity hover:opacity-80"
-                style={{ backgroundColor: "#D4897A", color: "#F2EAE0" }}
-              >
-                Κλείσε Ραντεβού
-              </Link>
+
+              {/* Contact */}
+              <div className="border p-6" style={{ backgroundColor: "rgba(255,255,255,0.6)", borderColor: "rgba(212,137,122,0.2)" }}>
+                <h3 className="font-serif text-sm font-semibold tracking-widest uppercase mb-4 flex items-center gap-2" style={{ color: "#4A3728" }}>
+                  <span style={{ color: "#D4897A" }}>✦</span> Στοιχεία
+                </h3>
+                <div className="space-y-4 font-serif font-light text-sm" style={{ color: "#7A6055" }}>
+                  <div>
+                    <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "#8FBB9E" }}>Διεύθυνση</p>
+                    <Link
+                      href="https://maps.google.com/?q=Εθνικής+Αντιστάσεως+14,+Άνω+Ιλίσια+15772"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-start gap-1.5 transition-opacity hover:opacity-60"
+                      style={{ color: "#7A6055" }}
+                    >
+                      <svg className="mt-0.5 shrink-0" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "#D4897A" }}>
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+                      </svg>
+                      <span>Εθνικής Αντιστάσεως 14<br />Άνω Ιλίσια, Τ.Κ. 15772</span>
+                    </Link>
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "#8FBB9E" }}>Τηλέφωνο</p>
+                    <Link href="tel:2107475270" className="transition-opacity hover:opacity-50">210 747 5270</Link>
+                  </div>
+                  <div>
+                    <p className="text-xs tracking-widest uppercase mb-1" style={{ color: "#8FBB9E" }}>Instagram</p>
+                    <Link href="https://www.instagram.com/dot.14_nailsalon/" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-50">
+                      @dot.14_nailsalon
+                    </Link>
+                  </div>
+                </div>
+                <Link
+                  href="https://www.instagram.com/dot.14_nailsalon/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block mt-6 px-6 py-3 text-sm tracking-widest uppercase font-serif w-full text-center transition-opacity hover:opacity-80"
+                  style={{ backgroundColor: "#D4897A", color: "#F2EAE0" }}
+                >
+                  Κλείσε Ραντεβού
+                </Link>
+              </div>
             </div>
           </div>
         </div>
