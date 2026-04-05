@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import OutlineButton from "./components/OutlineButton";
 import MobileNav from "./components/MobileNav";
+import ScrollReset from "./components/ScrollReset";
 
 const services = [
   {
@@ -66,6 +67,7 @@ const InstagramIcon = () => (
 export default function Home() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#F2EAE0", color: "#4A3728" }}>
+      <ScrollReset />
 
       {/* ── Nav ── */}
       <nav
